@@ -23,6 +23,7 @@
 # generated gallery images (scripts/optimize-images.mjs)
 /public/gallery/thumb/
 /public/gallery/full/
+/public/gallery/.optimized.json
 
 # misc
 .DS_Store
