@@ -23,6 +23,9 @@ const config: Config = {
         serif: ["var(--font-noto-serif)", "serif"],
         sans: ["var(--font-noto-sans)", "sans-serif"],
       },
+      animation: {
+        "spin-slow": "spin 3s linear infinite",
+      },
     },
   },
   plugins: [],

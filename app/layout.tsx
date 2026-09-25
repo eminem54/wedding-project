@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Noto_Sans_KR, Noto_Serif_KR } from "next/font/google";
 import "./globals.css";
 import { weddingInfo } from "@/lib/weddingInfo";
+import BackgroundMusic from "@/components/BackgroundMusic";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-noto-sans",
@@ -31,6 +32,7 @@ export default function RootLayout({
         <div className="mx-auto min-h-screen w-full max-w-md bg-white shadow-xl">
           {children}
         </div>
+        <BackgroundMusic />
       </body>
     </html>
   );
