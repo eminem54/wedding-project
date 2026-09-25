@@ -19,7 +19,11 @@ export default function Calendar() {
   return (
     <section className="flex flex-col items-center gap-4 px-6 py-16 text-center">
       <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">SAVE THE DATE</p>
-      <p className="font-serif text-2xl">{weddingInfo.dateLabel}</p>
+      <p className="font-serif text-2xl leading-snug">
+        {weddingInfo.dateLabel}
+        <br />
+        {weddingInfo.timeLabel}
+      </p>
       {dday !== null && (
         <p className="text-sm text-blossom-600">
           {dday > 0 ? `결혼식까지 ${dday}일` : dday === 0 ? "바로 오늘입니다" : "축하해주셔서 감사합니다"}

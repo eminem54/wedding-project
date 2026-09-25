@@ -6,7 +6,9 @@ export default function Footer() {
       <p>
         {weddingInfo.groom.name} & {weddingInfo.bride.name}
       </p>
-      <p>{weddingInfo.dateLabel}</p>
+      <p>
+        {weddingInfo.dateLabel} {weddingInfo.timeLabel}
+      </p>
     </footer>
   );
 }

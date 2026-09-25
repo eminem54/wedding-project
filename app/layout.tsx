@@ -17,7 +17,7 @@ const notoSerif = Noto_Serif_KR({
 
 export const metadata: Metadata = {
   title: `${weddingInfo.groom.name} ♥ ${weddingInfo.bride.name} 결혼합니다`,
-  description: `${weddingInfo.dateLabel} | ${weddingInfo.venue.name}`,
+  description: `${weddingInfo.dateLabel} ${weddingInfo.timeLabel} | ${weddingInfo.venue.name}`,
 };
 
 export default function RootLayout({

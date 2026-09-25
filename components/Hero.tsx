@@ -11,7 +11,11 @@ export default function Hero() {
         <span className="mx-3 text-blossom-400">&</span>
         {weddingInfo.bride.name}
       </h1>
-      <p className="text-sm text-ink/70">{weddingInfo.dateLabel}</p>
+      <p className="text-sm leading-relaxed text-ink/70">
+        {weddingInfo.dateLabel}
+        <br />
+        {weddingInfo.timeLabel}
+      </p>
       <p className="text-sm text-ink/70">{weddingInfo.venue.name}</p>
     </section>
   );
