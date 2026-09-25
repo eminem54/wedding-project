@@ -1,4 +1,6 @@
+import Image from "next/image";
 import { weddingInfo } from "@/lib/weddingInfo";
+import { basePath } from "@/lib/basePath";
 
 export default function Location() {
   const [street, ...detail] = weddingInfo.venue.address.split(/\s*(?=\()/);
@@ -22,6 +24,14 @@ export default function Location() {
         </p>
         <p className="text-sm text-ink/60">{weddingInfo.venue.tel}</p>
       </div>
+      <Image
+        src={`${basePath}/map.jpg`}
+        alt={`${weddingInfo.venue.name} 약도`}
+        width={1065}
+        height={1006}
+        sizes="(max-width: 448px) 100vw, 400px"
+        className="h-auto w-full rounded-xl border border-blossom-100"
+      />
       <div className="flex w-full gap-3">
         <a
           href={naverMapUrl}
