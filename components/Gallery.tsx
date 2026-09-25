@@ -1,5 +1,6 @@
 import Image from "next/image";
 import { weddingInfo } from "@/lib/weddingInfo";
+import { basePath } from "@/lib/basePath";
 
 export default function Gallery() {
   return (
@@ -17,7 +18,7 @@ export default function Gallery() {
           {weddingInfo.gallery.map((src) => (
             <div key={src} className="relative aspect-[3/4] overflow-hidden rounded-md bg-blossom-100">
               <Image
-                src={`/gallery/${src}`}
+                src={`${basePath}/gallery/${src}`}
                 alt=""
                 fill
                 sizes="(max-width: 448px) 50vw, 224px"

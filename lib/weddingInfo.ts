@@ -30,7 +30,14 @@ export const weddingInfo = {
     "귀한 걸음 하시어",
     "축복해 주시면 감사하겠습니다.",
   ],
-  gallery: [] as string[], // public/gallery 폴더에 사진을 넣고 파일명을 배열에 추가하세요
+  gallery: [
+    "gallery-01.jpg",
+    "gallery-02.jpg",
+    "gallery-03.jpg",
+    "gallery-04.jpg",
+    "gallery-05.jpg",
+    "gallery-06.jpg",
+  ] as string[],
   accounts: {
     groomSide: [{ role: "신랑", bank: "은행명", number: "000-0000-0000", holder: "신랑 이름" }],
     brideSide: [{ role: "신부", bank: "은행명", number: "000-0000-0000", holder: "신부 이름" }],
