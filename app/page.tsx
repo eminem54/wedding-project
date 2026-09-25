@@ -5,6 +5,7 @@ import Gallery from "@/components/Gallery";
 import Location from "@/components/Location";
 import Contact from "@/components/Contact";
 import Accounts from "@/components/Accounts";
+import Rsvp from "@/components/Rsvp";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -17,6 +18,7 @@ export default function Home() {
       <Location />
       <Contact />
       <Accounts />
+      <Rsvp />
       <Footer />
     </main>
   );
