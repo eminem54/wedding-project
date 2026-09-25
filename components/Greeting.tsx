@@ -12,11 +12,11 @@ export default function Greeting() {
       <div className="grid w-full grid-cols-2 gap-4 pt-4 text-sm">
         <div className="space-y-1">
           <p className="font-medium">{weddingInfo.groom.fatherName} · {weddingInfo.groom.motherName}의 아들</p>
-          <p className="font-serif text-base">{weddingInfo.groom.name}</p>
+          <p className="font-serif text-base font-bold">{weddingInfo.groom.name}</p>
         </div>
         <div className="space-y-1">
           <p className="font-medium">{weddingInfo.bride.fatherName} · {weddingInfo.bride.motherName}의 딸</p>
-          <p className="font-serif text-base">{weddingInfo.bride.name}</p>
+          <p className="font-serif text-base font-bold">{weddingInfo.bride.name}</p>
         </div>
       </div>
     </section>

@@ -2,15 +2,15 @@
 
 export const weddingInfo = {
   groom: {
-    name: "이지영",
-    fatherName: "이태한",
-    motherName: "김순애",
+    name: "이 지 영",
+    fatherName: "이 태 한",
+    motherName: "김 순 애",
     phone: "010-0000-0000",
   },
   bride: {
-    name: "최혜윤",
-    fatherName: "최종명",
-    motherName: "장경님",
+    name: "최 혜 윤",
+    fatherName: "최 종 명",
+    motherName: "장 경 님",
     phone: "010-0000-0000",
   },
   // ISO 형식으로 입력하세요 (YYYY-MM-DDTHH:mm:ss)
@@ -41,14 +41,44 @@ export const weddingInfo = {
   ] as string[],
   accounts: {
     groomSide: [
-      { role: "신랑", bank: "은행명", number: "000-0000-0000", holder: "이지영" },
-      { role: "신랑 아버지", bank: "은행명", number: "000-0000-0000", holder: "이태한" },
-      { role: "신랑 어머니", bank: "은행명", number: "000-0000-0000", holder: "김순애" },
+      {
+        role: "신랑",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "이지영",
+      },
+      {
+        role: "신랑 아버지",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "이태한",
+      },
+      {
+        role: "신랑 어머니",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "김순애",
+      },
     ],
     brideSide: [
-      { role: "신부", bank: "은행명", number: "000-0000-0000", holder: "최혜윤" },
-      { role: "신부 아버지", bank: "은행명", number: "000-0000-0000", holder: "최종명" },
-      { role: "신부 어머니", bank: "은행명", number: "000-0000-0000", holder: "장경님" },
+      {
+        role: "신부",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "최혜윤",
+      },
+      {
+        role: "신부 아버지",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "최종명",
+      },
+      {
+        role: "신부 어머니",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "장경님",
+      },
     ],
   },
 };
