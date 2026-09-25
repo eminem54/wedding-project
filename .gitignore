@@ -20,6 +20,10 @@
 # production
 /build
 
+# generated gallery images (scripts/optimize-images.mjs)
+/public/gallery/thumb/
+/public/gallery/full/
+
 # misc
 .DS_Store
 *.pem

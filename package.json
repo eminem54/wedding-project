@@ -3,7 +3,10 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "images": "node scripts/optimize-images.mjs",
+    "predev": "npm run images",
     "dev": "next dev",
+    "prebuild": "npm run images",
     "build": "next build",
     "start": "next start",
     "lint": "eslint"
@@ -21,6 +24,7 @@
     "eslint": "^8",
     "eslint-config-next": "14.2.35",
     "postcss": "^8.4.47",
+    "sharp": "^0.33.5",
     "tailwindcss": "^3.4.13",
     "typescript": "^5"
   }
