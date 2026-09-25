@@ -41,20 +41,14 @@ export const weddingInfo = {
   ] as string[],
   accounts: {
     groomSide: [
-      {
-        role: "신랑",
-        bank: "은행명",
-        number: "000-0000-0000",
-        holder: "신랑 이름",
-      },
+      { role: "신랑", bank: "은행명", number: "000-0000-0000", holder: "이지영" },
+      { role: "신랑 아버지", bank: "은행명", number: "000-0000-0000", holder: "이태한" },
+      { role: "신랑 어머니", bank: "은행명", number: "000-0000-0000", holder: "김순애" },
     ],
     brideSide: [
-      {
-        role: "신부",
-        bank: "은행명",
-        number: "000-0000-0000",
-        holder: "신부 이름",
-      },
+      { role: "신부", bank: "은행명", number: "000-0000-0000", holder: "최혜윤" },
+      { role: "신부 아버지", bank: "은행명", number: "000-0000-0000", holder: "최종명" },
+      { role: "신부 어머니", bank: "은행명", number: "000-0000-0000", holder: "장경님" },
     ],
   },
 };

@@ -60,7 +60,7 @@ export default function Accounts() {
               <div className="mt-2 flex flex-col gap-2">
                 {(side === "groom" ? weddingInfo.accounts.groomSide : weddingInfo.accounts.brideSide).map(
                   (account) => (
-                    <AccountItem key={account.number} account={account} />
+                    <AccountItem key={account.role} account={account} />
                   )
                 )}
               </div>
