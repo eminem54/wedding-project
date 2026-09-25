@@ -7,22 +7,11 @@ import {
   type RsvpMeal,
   type RsvpSide,
 } from "@/lib/rsvp";
+import { Field, inputClass } from "@/components/FormField";
 
 const NAME_MAX_LENGTH = 20;
 const PHONE_MAX_LENGTH = 20;
 const MAX_HEADCOUNT = 10;
-
-const inputClass =
-  "w-full rounded-lg border border-ink/10 px-3 py-2.5 text-base outline-none placeholder:text-ink/30 focus:border-blossom-400";
-
-function Field({ label, children }: { label: string; children: React.ReactNode }) {
-  return (
-    <div className="space-y-1.5">
-      <p className="text-base text-ink">{label}</p>
-      {children}
-    </div>
-  );
-}
 
 function Choice<T extends string | boolean>({
   options,

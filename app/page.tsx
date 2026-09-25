@@ -6,6 +6,7 @@ import Location from "@/components/Location";
 import Contact from "@/components/Contact";
 import Accounts from "@/components/Accounts";
 import Rsvp from "@/components/Rsvp";
+import Guestbook from "@/components/Guestbook";
 import Footer from "@/components/Footer";
 
 export default function Home() {
@@ -16,9 +17,10 @@ export default function Home() {
       <Calendar />
       <Gallery />
       <Location />
-      <Contact />
+      <Guestbook />
       <Accounts />
       <Rsvp />
+      <Contact />
       <Footer />
     </main>
   );

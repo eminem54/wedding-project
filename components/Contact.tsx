@@ -24,7 +24,7 @@ function ContactRow({ label, phone }: { label: string; phone: string }) {
 
 export default function Contact() {
   return (
-    <section className="flex flex-col gap-6 bg-blossom-50 px-8 py-16">
+    <section className="flex flex-col gap-6 px-8 py-16">
       <p className="text-center font-serif text-xs tracking-[0.3em] text-blossom-500">CONTACT</p>
       <div className="grid grid-cols-2 gap-6">
         <div>
