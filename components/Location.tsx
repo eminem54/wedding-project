@@ -1,6 +1,7 @@
 import { weddingInfo } from "@/lib/weddingInfo";
 
 export default function Location() {
+  const [street, ...detail] = weddingInfo.venue.address.split(/\s*(?=\()/);
   const query = encodeURIComponent(weddingInfo.venue.name);
   const naverMapUrl = `https://map.naver.com/v5/search/${query}`;
   const kakaoMapUrl = `https://map.kakao.com/?q=${query}`;
@@ -10,7 +11,15 @@ export default function Location() {
       <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">LOCATION</p>
       <div className="space-y-1">
         <p className="text-base font-medium">{weddingInfo.venue.name}</p>
-        <p className="text-sm text-ink/60">{weddingInfo.venue.address}</p>
+        <p className="text-sm text-ink/60">
+          {street}
+          {detail.length > 0 && (
+            <>
+              <br />
+              {detail.join(" ")}
+            </>
+          )}
+        </p>
         <p className="text-sm text-ink/60">{weddingInfo.venue.tel}</p>
       </div>
       <div className="flex w-full gap-3">
