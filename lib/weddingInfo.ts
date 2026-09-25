@@ -18,7 +18,7 @@ export const weddingInfo = {
   dateLabel: "2027년 01월 16일 토요일",
   timeLabel: "오후 1시 40분",
   venue: {
-    name: "디노체컨벤션",
+    name: "디노체컨벤션웨딩홀",
     address: "서울특별시 성동구 광장로 17 민자역사 6층 (성동구 행당동 168-151)",
     tel: "02-0000-0000",
   },
