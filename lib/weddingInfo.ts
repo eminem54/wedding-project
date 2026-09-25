@@ -2,23 +2,23 @@
 
 export const weddingInfo = {
   groom: {
-    name: "신랑 이름",
-    fatherName: "아버지 이름",
-    motherName: "어머니 이름",
+    name: "이지영",
+    fatherName: "이태한",
+    motherName: "김순애",
     phone: "010-0000-0000",
   },
   bride: {
-    name: "신부 이름",
-    fatherName: "아버지 이름",
-    motherName: "어머니 이름",
+    name: "최혜윤",
+    fatherName: "최종명",
+    motherName: "장경님",
     phone: "010-0000-0000",
   },
   // ISO 형식으로 입력하세요 (YYYY-MM-DDTHH:mm:ss)
-  dateTimeISO: "2026-12-31T13:00:00",
-  dateLabel: "2026년 12월 31일 목요일 오후 1시",
+  dateTimeISO: "2027-01-16T13:40:00",
+  dateLabel: "2027년 01월 16일 토요일 오후 1시 40분",
   venue: {
-    name: "○○웨딩홀 3층 그랜드홀",
-    address: "서울특별시 ○○구 ○○로 123",
+    name: "디노체컨벤션 6층",
+    address: "서울특별시 성동구 광장로 17 민자역사 6층 (성동구 행당동 168-151)",
     tel: "02-0000-0000",
   },
   greeting: [
@@ -39,7 +39,21 @@ export const weddingInfo = {
     "gallery-06.jpg",
   ] as string[],
   accounts: {
-    groomSide: [{ role: "신랑", bank: "은행명", number: "000-0000-0000", holder: "신랑 이름" }],
-    brideSide: [{ role: "신부", bank: "은행명", number: "000-0000-0000", holder: "신부 이름" }],
+    groomSide: [
+      {
+        role: "신랑",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "신랑 이름",
+      },
+    ],
+    brideSide: [
+      {
+        role: "신부",
+        bank: "은행명",
+        number: "000-0000-0000",
+        holder: "신부 이름",
+      },
+    ],
   },
 };
