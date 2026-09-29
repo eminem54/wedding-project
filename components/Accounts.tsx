@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { weddingInfo } from "@/lib/weddingInfo";
+import { SectionTitle } from "@/components/SectionTitle";
 
 type Account = { role: string; bank: string; number: string; holder: string };
 
@@ -19,17 +20,17 @@ function AccountItem({ account }: { account: Account }) {
   };
 
   return (
-    <div className="flex items-center justify-between rounded-lg bg-white px-4 py-3 shadow-sm">
+    <div className="flex items-center justify-between rounded-md bg-white/60 px-4 py-3 shadow-sm">
       <div className="text-left">
-        <p className="text-xs text-ink/50">
+        <p className="text-[13px] text-ink/80">
           {account.role} · {account.bank}
         </p>
-        <p className="text-sm font-medium">{account.number}</p>
-        <p className="text-xs text-ink/50">예금주 {account.holder}</p>
+        <p className="my-0.5 text-[15px] font-medium text-ink">{account.number}</p>
+        <p className="text-[13px] text-ink/80">예금주 {account.holder}</p>
       </div>
       <button
         onClick={handleCopy}
-        className="rounded-full border border-blossom-300 px-3 py-1.5 text-xs font-medium text-blossom-700"
+        className="rounded-md border border-sage-600 px-3 py-1.5 text-xs font-normal text-sage-700"
       >
         {copied ? "복사됨" : "복사"}
       </button>
@@ -41,28 +42,31 @@ export default function Accounts() {
   const [open, setOpen] = useState<"groom" | "bride" | null>(null);
 
   return (
-    <section className="flex flex-col gap-4 px-6 py-16">
-      <p className="text-center font-serif text-xs tracking-[0.3em] text-blossom-500">
-        ACCOUNT
+    <section className="flex flex-col gap-4 px-6 py-20">
+      <SectionTitle>마음 전하실 곳</SectionTitle>
+      <p className="text-center text-[15px] leading-7 text-ink/70">
+        참석이 어려우신 분들을 위해
+        <br />
+        계좌번호를 기재하였습니다.
       </p>
-      <p className="text-center text-sm text-ink/60">마음 전하실 곳</p>
       <div className="flex flex-col gap-3">
         {(["groom", "bride"] as const).map((side) => (
           <div key={side}>
             <button
               onClick={() => setOpen(open === side ? null : side)}
-              className="flex w-full items-center justify-between rounded-full border border-blossom-200 px-5 py-3 text-sm font-medium"
+              className="flex w-full items-center justify-between rounded-md border border-sage-600/40 bg-white/40 px-5 py-3.5 text-[15px] font-normal text-sage-700"
             >
               {side === "groom" ? "신랑측 계좌번호" : "신부측 계좌번호"}
               <span>{open === side ? "−" : "+"}</span>
             </button>
             {open === side && (
               <div className="mt-2 flex flex-col gap-2">
-                {(side === "groom" ? weddingInfo.accounts.groomSide : weddingInfo.accounts.brideSide).map(
-                  (account) => (
-                    <AccountItem key={account.role} account={account} />
-                  )
-                )}
+                {(side === "groom"
+                  ? weddingInfo.accounts.groomSide
+                  : weddingInfo.accounts.brideSide
+                ).map((account) => (
+                  <AccountItem key={account.role} account={account} />
+                ))}
               </div>
             )}
           </div>

@@ -1,18 +1,9 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { lockScroll, unlockScroll } from "@/lib/scrollLock";
 
 const ANIMATION_MS = 300;
-
-// Two sheets can overlap while one slides out and the next slides in,
-// so the scroll lock is reference-counted.
-let scrollLocks = 0;
-function lockScroll() {
-  if (scrollLocks++ === 0) document.body.style.overflow = "hidden";
-}
-function unlockScroll() {
-  if (--scrollLocks === 0) document.body.style.overflow = "";
-}
 
 type Props = {
   open: boolean;
@@ -62,13 +53,13 @@ export default function BottomSheet({ open, onClose, label, children }: Props) {
   return (
     <div className="fixed inset-0 z-50" role="dialog" aria-modal="true" aria-label={label}>
       <div
-        className={`absolute inset-0 bg-black/40 transition-opacity duration-300 ${
+        className={`absolute inset-0 bg-black/35 transition-opacity duration-300 ${
           shown ? "opacity-100" : "opacity-0"
         }`}
         onClick={onClose}
       />
       <div
-        className={`absolute bottom-0 left-1/2 max-h-[90vh] w-full max-w-md -translate-x-1/2 overflow-y-auto rounded-t-3xl bg-white px-6 pb-8 pt-3 shadow-2xl transition-transform duration-300 ease-out ${
+        className={`absolute bottom-0 left-1/2 max-h-[90vh] w-full max-w-md -translate-x-1/2 overflow-y-auto paper-texture rounded-t-2xl px-6 pb-8 pt-3 shadow-2xl transition-transform duration-300 ease-out ${
           shown ? "translate-y-0" : "translate-y-full"
         }`}
       >

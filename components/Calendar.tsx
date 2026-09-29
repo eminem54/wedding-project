@@ -2,15 +2,10 @@
 
 import { useEffect, useState } from "react";
 import { weddingInfo } from "@/lib/weddingInfo";
+import { weddingDate } from "@/lib/weddingDate";
 
 const WEEKDAYS = ["일", "월", "화", "수", "목", "금", "토"];
-
-// Read the date parts straight from the ISO string so the calendar
-// doesn't shift with the viewer's timezone.
-const [year, month, weddingDay] = weddingInfo.dateTimeISO
-  .slice(0, 10)
-  .split("-")
-  .map(Number);
+const { year, month, day: weddingDay } = weddingDate;
 
 function getMonthCells() {
   const firstWeekday = new Date(year, month - 1, 1).getDay();
@@ -20,54 +15,81 @@ function getMonthCells() {
   return cells;
 }
 
-function getDday() {
-  const target = new Date(weddingInfo.dateTimeISO).getTime();
-  const now = Date.now();
-  return Math.ceil((target - now) / (1000 * 60 * 60 * 24));
+type Remaining = { days: number; hours: number; minutes: number; seconds: number };
+
+function getRemaining(): Remaining {
+  const diff = Math.max(0, new Date(weddingInfo.dateTimeISO).getTime() - Date.now());
+  const s = Math.floor(diff / 1000);
+  return {
+    days: Math.floor(s / 86400),
+    hours: Math.floor((s % 86400) / 3600),
+    minutes: Math.floor((s % 3600) / 60),
+    seconds: s % 60,
+  };
+}
+
+function Countdown() {
+  const [remaining, setRemaining] = useState<Remaining | null>(null);
+
+  useEffect(() => {
+    setRemaining(getRemaining());
+    const id = setInterval(() => setRemaining(getRemaining()), 1000);
+    return () => clearInterval(id);
+  }, []);
+
+  const units: [keyof Remaining, string][] = [
+    ["days", "Days"],
+    ["hours", "Hours"],
+    ["minutes", "Minutes"],
+    ["seconds", "Seconds"],
+  ];
+
+  return (
+    <div className="flex flex-col items-center gap-10 px-6 pt-20">
+      <p className="flex items-center gap-2 text-[19px] font-normal text-ink/90">
+        {weddingInfo.groom.firstName}
+        <span className="text-[17px] text-ink">♥</span>
+        {weddingInfo.bride.firstName}
+        <span className="ml-1">결혼식까지</span>
+      </p>
+      <div className="grid w-full grid-cols-4 gap-3">
+        {units.map(([key, label]) => (
+          <div key={key} className="flex flex-col items-center gap-2">
+            <span className="flex aspect-square w-full max-w-[68px] items-center justify-center rounded-full bg-sage-600 text-[22px] font-normal tabular-nums text-white shadow-md">
+              {remaining ? remaining[key] : "-"}
+            </span>
+            <span className="text-[13px] text-ink/70">{label}</span>
+          </div>
+        ))}
+      </div>
+    </div>
+  );
 }
 
 export default function Calendar() {
-  const [dday, setDday] = useState<number | null>(null);
-
-  useEffect(() => {
-    setDday(getDday());
-  }, []);
-
   return (
-    <section className="flex flex-col items-center gap-4 px-6 py-16 text-center">
-      <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">
-        SAVE THE DATE
-      </p>
-      <p className="font-serif text-2xl leading-snug">
-        {weddingInfo.dateLabel}
+    <section className="py-20">
+      <h2 className="px-6 text-[34px] font-light leading-[1.45] tracking-wider text-sage-600">
+        {weddingDate.poeticLines[0]}
         <br />
-        {weddingInfo.timeLabel}
-      </p>
+        {weddingDate.poeticLines[1]}
+      </h2>
 
-      <div className="mt-4 w-full max-w-xs border-y border-blossom-100 py-6">
-        <p className="mb-4 font-serif text-lg text-blossom-600">{month}월</p>
-        <div className="grid grid-cols-7 gap-y-2 text-sm">
-          {WEEKDAYS.map((w, i) => (
-            <span
-              key={w}
-              className={`pb-1 text-xs ${i === 0 ? "text-blossom-500" : "text-ink/50"}`}
-            >
+      <div className="mx-4 mt-8 border-y-[3px] border-sage-600 pb-6 pt-4">
+        <div className="grid grid-cols-7 text-center">
+          {WEEKDAYS.map((w) => (
+            <span key={w} className="py-3 text-[16px] font-medium text-ink">
               {w}
             </span>
           ))}
           {getMonthCells().map((day, i) => {
             if (day === null) return <span key={`empty-${i}`} />;
             const isWeddingDay = day === weddingDay;
-            const isSunday = i % 7 === 0;
             return (
-              <span key={day} className="flex items-center justify-center">
+              <span key={day} className="flex h-14 items-center justify-center">
                 <span
-                  className={`flex h-9 w-9 items-center justify-center rounded-full ${
-                    isWeddingDay
-                      ? "bg-blossom-400 font-semibold text-white shadow-md"
-                      : isSunday
-                        ? "text-blossom-500"
-                        : "text-ink/80"
+                  className={`flex h-10 w-10 items-center justify-center rounded-full text-[16px] ${
+                    isWeddingDay ? "bg-sage-600 font-normal text-white shadow-sm" : "text-ink/85"
                   }`}
                   aria-label={isWeddingDay ? `${month}월 ${day}일 결혼식` : undefined}
                 >
@@ -79,15 +101,7 @@ export default function Calendar() {
         </div>
       </div>
 
-      {dday !== null && (
-        <p className="text-sm text-blossom-600">
-          {dday > 0
-            ? `D - ${dday}일`
-            : dday === 0
-              ? "바로 오늘입니다"
-              : "축하해주셔서 감사합니다"}
-        </p>
-      )}
+      <Countdown />
     </section>
   );
 }

@@ -1,6 +1,7 @@
 import Hero from "@/components/Hero";
 import Greeting from "@/components/Greeting";
 import Calendar from "@/components/Calendar";
+import Interview from "@/components/Interview";
 import Gallery from "@/components/Gallery";
 import Location from "@/components/Location";
 import Contact from "@/components/Contact";
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <Hero />
       <Greeting />
+      <Interview />
       <Calendar />
       <Gallery />
       <Location />

@@ -5,26 +5,48 @@ const config: Config = {
   theme: {
     extend: {
       colors: {
-        blossom: {
-          50: "#fdf6f4",
-          100: "#fbe9e5",
-          200: "#f6cfc6",
-          300: "#eeab9b",
-          400: "#e2816b",
-          500: "#d1604a",
-          600: "#b0492f",
-          700: "#8f3b27",
-          800: "#763326",
-          900: "#642e24",
+        // Muted olive green used for headings, highlights and buttons.
+        sage: {
+          50: "#f1f3ee",
+          100: "#e2e7dc",
+          200: "#c5cfbb",
+          300: "#a2b193",
+          400: "#7e906f",
+          500: "#647758",
+          600: "#53654a",
+          700: "#45543d",
+          800: "#384432",
+          900: "#2b3427",
         },
-        ink: "#3a332f",
+        // Wax-seal burgundy on the cover.
+        wine: {
+          400: "#a8404a",
+          500: "#8e2a34",
+          600: "#76202a",
+          700: "#5c1820",
+        },
+        paper: {
+          DEFAULT: "#f5f3ef",
+          dark: "#e8e5df",
+        },
+        ink: "#333230",
       },
       fontFamily: {
-        serif: ["var(--font-noto-serif)", "serif"],
         sans: ["var(--font-noto-sans)", "sans-serif"],
+        serif: ["var(--font-noto-serif)", "serif"],
+        script: ["var(--font-script)", "cursive"],
+        garamond: ["var(--font-garamond)", "serif"],
+        bodoni: ["var(--font-bodoni)", "serif"],
+        gowun: ["var(--font-gowun)", "serif"],
+      },
+      keyframes: {
+        "fade-up": {
+          from: { opacity: "0", transform: "translateY(12px)" },
+          to: { opacity: "1", transform: "translateY(0)" },
+        },
       },
       animation: {
-        "spin-slow": "spin 3s linear infinite",
+        "fade-up": "fade-up 1s ease-out both",
       },
     },
   },

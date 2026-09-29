@@ -41,7 +41,10 @@ export default function BackgroundMusic() {
       audio.pause();
       setPlaying(false);
     } else {
-      audio.play().then(() => setPlaying(true)).catch(() => {});
+      audio
+        .play()
+        .then(() => setPlaying(true))
+        .catch(() => {});
     }
   };
 
@@ -53,10 +56,34 @@ export default function BackgroundMusic() {
         type="button"
         onClick={toggle}
         aria-label={playing ? "배경음악 끄기" : "배경음악 켜기"}
-        className="fixed bottom-5 right-5 z-40 flex h-11 w-11 items-center justify-center rounded-full bg-white text-blossom-600 shadow-lg"
+        className="fixed right-[max(0.5rem,calc((100vw-28rem)/2+0.5rem))] top-2 z-40 flex h-10 w-10 items-center justify-center text-ink/70"
       >
-        <span className={playing ? "animate-spin-slow" : ""}>{playing ? "♫" : "♪"}</span>
+        <SpeakerIcon muted={!playing} />
       </button>
     </>
+  );
+}
+
+function SpeakerIcon({ muted }: { muted: boolean }) {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      className="h-6 w-6"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth="1.6"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+    >
+      <path d="M4 9.5h3.5L12 5.5v13l-4.5-4H4z" fill="currentColor" />
+      {muted ? (
+        <path d="M4 20L20 4" strokeWidth="1.8" />
+      ) : (
+        <>
+          <path d="M15.5 9a4 4 0 010 6" />
+          <path d="M18 6.5a7.5 7.5 0 010 11" />
+        </>
+      )}
+    </svg>
   );
 }

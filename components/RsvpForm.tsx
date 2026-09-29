@@ -1,12 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import {
-  MESSAGE_MAX_LENGTH,
-  submitRsvp,
-  type RsvpMeal,
-  type RsvpSide,
-} from "@/lib/rsvp";
+import { MESSAGE_MAX_LENGTH, submitRsvp, type RsvpMeal, type RsvpSide } from "@/lib/rsvp";
 import { Field, inputClass } from "@/components/FormField";
 
 const NAME_MAX_LENGTH = 20;
@@ -35,9 +30,9 @@ function Choice<T extends string | boolean>({
             type="button"
             onClick={() => onChange(o.value)}
             aria-pressed={selected}
-            className={`rounded-lg border py-2.5 text-sm transition-colors ${
+            className={`rounded-md border py-2.5 text-sm transition-colors ${
               selected
-                ? "border-blossom-400 bg-blossom-50 font-medium text-blossom-700"
+                ? "border-sage-600 bg-sage-600 font-normal text-white"
                 : "border-ink/10 text-ink/60"
             }`}
           >
@@ -96,13 +91,13 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
   if (status === "done") {
     return (
       <div className="flex flex-col items-center gap-3 py-6 text-center">
-        <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">THANK YOU</p>
+        <p className="font-garamond text-[15px] tracking-[0.25em] text-sage-600">THANK YOU</p>
         <p className="text-lg font-medium">소중한 답변 감사합니다</p>
         <p className="text-sm text-ink/60">전해주신 마음 잘 받았습니다.</p>
         <button
           type="button"
           onClick={onClose}
-          className="mt-4 w-full rounded-full bg-blossom-500 py-3.5 text-sm font-medium text-white"
+          className="mt-4 w-full rounded-md bg-sage-600 py-3.5 text-[15px] font-normal text-white shadow-md"
         >
           닫기
         </button>
@@ -113,7 +108,7 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
   return (
     <form onSubmit={handleSubmit} className="space-y-5 text-left">
       <div className="text-center">
-        <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">R.S.V.P</p>
+        <p className="font-garamond text-[15px] tracking-[0.25em] text-sage-600">R.S.V.P</p>
         <h2 className="mt-2 text-lg font-medium">참석 의사 전달하기</h2>
       </div>
 
@@ -154,13 +149,13 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
       {attending && (
         <>
           <Field label="동행 인원 (본인 포함)">
-            <div className="flex items-center justify-between rounded-lg border border-ink/10 px-2 py-1.5">
+            <div className="flex items-center justify-between rounded-md border border-ink/15 bg-white/60 px-2 py-1.5">
               <button
                 type="button"
                 onClick={() => setHeadcount((n) => Math.max(1, n - 1))}
                 disabled={headcount <= 1}
                 aria-label="인원 줄이기"
-                className="h-9 w-9 rounded-full text-xl text-blossom-600 disabled:text-ink/20"
+                className="h-9 w-9 rounded-full text-xl text-sage-600 disabled:text-ink/20"
               >
                 −
               </button>
@@ -170,7 +165,7 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
                 onClick={() => setHeadcount((n) => Math.min(MAX_HEADCOUNT, n + 1))}
                 disabled={headcount >= MAX_HEADCOUNT}
                 aria-label="인원 늘리기"
-                className="h-9 w-9 rounded-full text-xl text-blossom-600 disabled:text-ink/20"
+                className="h-9 w-9 rounded-full text-xl text-sage-600 disabled:text-ink/20"
               >
                 +
               </button>
@@ -221,7 +216,7 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
       </Field>
 
       {status === "error" && (
-        <p className="text-center text-sm text-blossom-600">
+        <p className="text-center text-sm text-sage-600">
           전송에 실패했어요. 잠시 후 다시 시도해주세요.
         </p>
       )}
@@ -229,7 +224,7 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
       <button
         type="submit"
         disabled={!canSubmit}
-        className="w-full rounded-full bg-blossom-500 py-3.5 text-sm font-medium text-white transition-opacity disabled:opacity-40"
+        className="w-full rounded-md bg-sage-600 py-3.5 text-[15px] font-normal text-white shadow-md transition-opacity disabled:opacity-40"
       >
         {status === "submitting" ? "전송 중..." : "전달하기"}
       </button>

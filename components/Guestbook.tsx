@@ -1,13 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
-import {
-  fetchGuestbookPage,
-  GUESTBOOK_PAGE_SIZE,
-  type GuestbookEntry,
-} from "@/lib/guestbook";
+import { fetchGuestbookPage, GUESTBOOK_PAGE_SIZE, type GuestbookEntry } from "@/lib/guestbook";
 import BottomSheet from "@/components/BottomSheet";
 import { GuestbookDeleteForm, GuestbookForm } from "@/components/GuestbookForm";
+import { SectionTitle } from "@/components/SectionTitle";
 
 const PAGE_WINDOW = 5;
 const NAME_DISPLAY_MAX = 6;
@@ -29,7 +26,9 @@ const timeFormat = new Intl.DateTimeFormat("ko-KR", {
 });
 
 function formatTime(iso: string) {
-  const p = Object.fromEntries(timeFormat.formatToParts(new Date(iso)).map((x) => [x.type, x.value]));
+  const p = Object.fromEntries(
+    timeFormat.formatToParts(new Date(iso)).map((x) => [x.type, x.value]),
+  );
   return `${p.year}.${p.month}.${p.day} ${p.hour}:${p.minute}`;
 }
 
@@ -48,7 +47,7 @@ function Pagination({
   const start = Math.max(1, end - PAGE_WINDOW + 1);
   const pages = Array.from({ length: end - start + 1 }, (_, i) => start + i);
   const arrowClass =
-    "flex h-8 w-8 items-center justify-center rounded-full text-lg text-blossom-600 disabled:text-ink/20";
+    "flex h-8 w-8 items-center justify-center rounded-full text-lg text-sage-600 disabled:text-ink/20";
 
   return (
     <nav aria-label="방명록 페이지" className="flex items-center justify-center gap-1">
@@ -68,7 +67,7 @@ function Pagination({
           onClick={() => onChange(p)}
           aria-current={p === page ? "page" : undefined}
           className={`h-8 w-8 rounded-full text-sm ${
-            p === page ? "bg-blossom-400 font-medium text-white" : "text-ink/60"
+            p === page ? "bg-sage-600 font-normal text-white" : "text-ink/60"
           }`}
         >
           {p}
@@ -140,8 +139,8 @@ export default function Guestbook() {
   const totalPages = data ? Math.max(1, Math.ceil(data.total / GUESTBOOK_PAGE_SIZE)) : 1;
 
   return (
-    <section className="flex flex-col items-center gap-6 bg-blossom-50 px-6 py-16 text-center">
-      <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">GUESTBOOK</p>
+    <section className="flex flex-col items-center gap-6 px-6 py-20 text-center">
+      <SectionTitle>방명록</SectionTitle>
       <p className="text-sm leading-relaxed text-ink/70">
         두 사람에게 따뜻한
         <br />
@@ -152,14 +151,14 @@ export default function Guestbook() {
         {status === "error" && !data ? (
           <div className="space-y-3 py-6 text-sm text-ink/60">
             <p>메시지를 불러오지 못했어요.</p>
-            <button type="button" onClick={reload} className="text-blossom-600 underline">
+            <button type="button" onClick={reload} className="text-sage-600 underline">
               다시 시도
             </button>
           </div>
         ) : !data ? (
           <p className="py-10 text-sm text-ink/40">불러오는 중...</p>
         ) : data.entries.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-blossom-200 bg-white py-10 text-sm text-ink/50">
+          <p className="rounded-xl border border-dashed border-sage-300 bg-white/40 py-10 text-sm text-ink/50">
             첫 번째 축하 메시지를 남겨주세요.
           </p>
         ) : (
@@ -169,7 +168,7 @@ export default function Guestbook() {
             {data.entries.map((entry) => (
               <li
                 key={entry.id}
-                className="relative rounded-xl bg-white px-5 py-4 text-left shadow-sm"
+                className="relative rounded-md bg-white/60 px-5 py-4 text-left shadow-sm"
               >
                 <button
                   type="button"
@@ -204,7 +203,7 @@ export default function Guestbook() {
       <button
         type="button"
         onClick={() => setFormOpen(true)}
-        className="w-full rounded-full border-2 border-blossom-400 bg-white py-3 text-sm font-medium text-blossom-700"
+        className="w-full rounded-md bg-sage-600 py-3.5 text-[15px] font-normal text-white shadow-md"
       >
         메시지 남기기
       </button>

@@ -13,12 +13,12 @@ import {
 import { Field, inputClass } from "@/components/FormField";
 
 const submitButtonClass =
-  "w-full rounded-full bg-blossom-500 py-3.5 text-sm font-medium text-white transition-opacity disabled:opacity-40";
+  "w-full rounded-md bg-sage-600 py-3.5 text-[15px] font-normal text-white shadow-md transition-opacity disabled:opacity-40";
 
 function SheetTitle({ children }: { children: React.ReactNode }) {
   return (
     <div className="text-center">
-      <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">GUESTBOOK</p>
+      <p className="font-garamond text-[15px] tracking-[0.25em] text-sage-600">GUESTBOOK</p>
       <h2 className="mt-2 text-lg font-medium">{children}</h2>
     </div>
   );
@@ -94,7 +94,7 @@ export function GuestbookForm({ onSubmitted }: { onSubmitted: () => void }) {
       </Field>
 
       {status === "error" && (
-        <p className="text-center text-sm text-blossom-600">
+        <p className="text-center text-sm text-sage-600">
           등록에 실패했어요. 잠시 후 다시 시도해주세요.
         </p>
       )}
@@ -158,10 +158,10 @@ export function GuestbookDeleteForm({
       </Field>
 
       {status === "wrong" && (
-        <p className="text-center text-sm text-blossom-600">비밀번호가 일치하지 않아요.</p>
+        <p className="text-center text-sm text-sage-600">비밀번호가 일치하지 않아요.</p>
       )}
       {status === "error" && (
-        <p className="text-center text-sm text-blossom-600">
+        <p className="text-center text-sm text-sage-600">
           삭제에 실패했어요. 잠시 후 다시 시도해주세요.
         </p>
       )}

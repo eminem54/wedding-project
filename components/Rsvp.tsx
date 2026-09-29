@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useState } from "react";
 import { weddingInfo } from "@/lib/weddingInfo";
 import BottomSheet from "@/components/BottomSheet";
+import { SectionTitle } from "@/components/SectionTitle";
 import RsvpForm from "@/components/RsvpForm";
 
 const PROMPT_DELAY_MS = 1200;
@@ -54,9 +55,9 @@ export default function Rsvp() {
   };
 
   return (
-    <section className="flex flex-col items-center gap-4 bg-blossom-50 px-6 py-16 text-center">
-      <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">R.S.V.P</p>
-      <p className="text-sm leading-relaxed text-ink/70">
+    <section className="flex flex-col items-center gap-4 px-6 py-20 text-center">
+      <SectionTitle>참석 의사 전달</SectionTitle>
+      <p className="text-[15px] leading-7 text-ink/75">
         참석 여부를 미리 알려주시면
         <br />
         정성껏 준비하겠습니다.
@@ -64,14 +65,14 @@ export default function Rsvp() {
       <button
         type="button"
         onClick={openForm}
-        className="mt-2 w-full rounded-full border-2 border-blossom-400 bg-white py-3 text-sm font-medium text-blossom-700"
+        className="mt-2 w-full rounded-md bg-sage-600 py-3.5 text-[15px] font-normal text-white shadow-md"
       >
         참석의사 전달하기
       </button>
 
       <BottomSheet open={promptOpen} onClose={closePrompt} label="참석 의사 전달 안내">
         <div className="text-center">
-          <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">R.S.V.P</p>
+          <p className="font-garamond text-[15px] tracking-[0.25em] text-sage-600">R.S.V.P</p>
           <h2 className="mt-2 text-lg font-medium">참석 의사 전달</h2>
           <p className="mt-3 text-sm leading-relaxed text-ink/70">
             축하의 마음으로 참석해주시는 모든 분들을
@@ -82,7 +83,7 @@ export default function Rsvp() {
           </p>
         </div>
 
-        <dl className="mt-5 grid grid-cols-[3rem_1fr] gap-y-2 rounded-xl bg-blossom-50 px-5 py-4 text-left text-sm">
+        <dl className="mt-5 grid grid-cols-[3rem_1fr] gap-y-2 rounded-md bg-sage-50 px-5 py-4 text-left text-sm">
           <dt className="text-ink/50">일시</dt>
           <dd>
             {weddingInfo.dateLabel} {weddingInfo.timeLabel}
@@ -95,14 +96,14 @@ export default function Rsvp() {
           <button
             type="button"
             onClick={hideForToday}
-            className="rounded-full bg-ink/5 py-3 text-sm text-ink/60"
+            className="rounded-md bg-ink/5 py-3 text-sm text-ink/60"
           >
             오늘 하루 보지 않기
           </button>
           <button
             type="button"
             onClick={openForm}
-            className="rounded-full border-2 border-blossom-400 py-3 text-sm font-medium text-blossom-700"
+            className="rounded-md bg-sage-600 py-3 text-sm font-normal text-white"
           >
             참석의사 전달하기
           </button>

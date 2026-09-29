@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Image from "next/image";
 import { weddingInfo } from "@/lib/weddingInfo";
+import { SectionTitle } from "@/components/SectionTitle";
 import { basePath } from "@/lib/basePath";
 
 const SWIPE_THRESHOLD = 50;
@@ -29,7 +30,7 @@ export default function Gallery() {
     (dir: -1 | 1) => {
       if (count > 1) setShift((s) => (s === 0 ? dir : s));
     },
-    [count]
+    [count],
   );
 
   useEffect(() => {
@@ -52,9 +53,7 @@ export default function Gallery() {
   // only once that position has been painted.
   useEffect(() => {
     if (!instant) return;
-    const id = requestAnimationFrame(() =>
-      requestAnimationFrame(() => setInstant(false))
-    );
+    const id = requestAnimationFrame(() => requestAnimationFrame(() => setInstant(false)));
     return () => cancelAnimationFrame(id);
   }, [instant]);
 
@@ -86,14 +85,18 @@ export default function Gallery() {
   };
 
   const slides =
-    selected === null ? [] : count > 1 ? [wrap(selected - 1), selected, wrap(selected + 1)] : [selected];
+    selected === null
+      ? []
+      : count > 1
+        ? [wrap(selected - 1), selected, wrap(selected + 1)]
+        : [selected];
   const baseOffset = count > 1 ? -100 : 0;
 
   return (
-    <section className="flex flex-col items-center gap-6 bg-blossom-50 px-6 py-16 text-center">
-      <p className="font-serif text-xs tracking-[0.3em] text-blossom-500">GALLERY</p>
+    <section className="flex flex-col items-center gap-6 px-6 py-20 text-center">
+      <SectionTitle>갤러리</SectionTitle>
       {count === 0 ? (
-        <p className="rounded-lg border border-dashed border-blossom-200 px-6 py-12 text-sm text-ink/50">
+        <p className="rounded-lg border border-dashed border-sage-200 px-6 py-12 text-sm text-ink/50">
           public/gallery 폴더에 사진을 넣고
           <br />
           lib/weddingInfo.ts의 gallery 배열에 파일명을 추가하면
@@ -107,7 +110,7 @@ export default function Gallery() {
               type="button"
               onClick={() => setSelected(i)}
               aria-label={`${i + 1}번째 사진 크게 보기`}
-              className="relative aspect-[3/4] overflow-hidden rounded-md bg-blossom-100"
+              className="relative aspect-[3/4] overflow-hidden rounded-sm bg-sage-100"
             >
               <Image
                 src={imageUrl(file, "thumb")}
@@ -124,7 +127,7 @@ export default function Gallery() {
 
       {selected !== null && (
         <div
-          className="fixed inset-0 z-50 overflow-hidden bg-gradient-to-b from-blossom-100/95 via-white/95 to-blossom-100/95 backdrop-blur-sm"
+          className="fixed inset-0 z-50 overflow-hidden bg-paper/95 backdrop-blur-sm"
           onClick={close}
         >
           <div
@@ -146,7 +149,7 @@ export default function Gallery() {
                 className="flex h-full w-full shrink-0 items-center justify-center"
               >
                 <div
-                  className="relative h-[75vh] w-[calc(100%-2rem)] max-w-md overflow-hidden rounded-2xl bg-white shadow-xl"
+                  className="relative h-[75vh] w-[calc(100%-2rem)] max-w-md overflow-hidden rounded-md bg-paper shadow-xl"
                   onClick={(e) => e.stopPropagation()}
                 >
                   <Image
@@ -167,7 +170,7 @@ export default function Gallery() {
             type="button"
             onClick={close}
             aria-label="닫기"
-            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl leading-none text-blossom-600 shadow-md"
+            className="absolute right-4 top-4 z-10 flex h-9 w-9 items-center justify-center rounded-full bg-white text-xl leading-none text-sage-600 shadow-md"
           >
             &times;
           </button>
@@ -181,7 +184,7 @@ export default function Gallery() {
                   go(-1);
                 }}
                 aria-label="이전 사진"
-                className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-2xl leading-none text-blossom-600 shadow-md"
+                className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-2xl leading-none text-sage-600 shadow-md"
               >
                 &lsaquo;
               </button>
@@ -192,7 +195,7 @@ export default function Gallery() {
                   go(1);
                 }}
                 aria-label="다음 사진"
-                className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-2xl leading-none text-blossom-600 shadow-md"
+                className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-2xl leading-none text-sage-600 shadow-md"
               >
                 &rsaquo;
               </button>
