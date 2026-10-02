@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import {
   Bodoni_Moda,
   Cormorant_Garamond,
@@ -54,6 +54,14 @@ const gowun = Gowun_Batang({
 export const metadata: Metadata = {
   title: `${weddingInfo.groom.name} ♥ ${weddingInfo.bride.name} 결혼합니다`,
   description: `${weddingInfo.dateLabel} ${weddingInfo.timeLabel} | ${weddingInfo.venue.name}`,
+};
+
+// Pinch-zoom is reserved for the gallery lightbox, which handles it itself.
+export const viewport: Viewport = {
+  width: "device-width",
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
 };
 
 export default function RootLayout({
