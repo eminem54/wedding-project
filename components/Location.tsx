@@ -38,16 +38,30 @@ export default function Location() {
           href={naverMapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 rounded-md border border-sage-600 py-3 text-sm font-normal text-sage-700 transition-colors hover:bg-sage-50"
+          className="flex flex-1 items-center justify-center gap-2 rounded-md border border-sage-600 py-3 text-sm font-normal text-sage-700 transition-colors hover:bg-sage-50"
         >
+          <Image
+            src={`${basePath}/icons/naver-map.png`}
+            alt=""
+            width={20}
+            height={20}
+            className="h-5 w-5 rounded"
+          />
           네이버 지도
         </a>
         <a
           href={kakaoMapUrl}
           target="_blank"
           rel="noopener noreferrer"
-          className="flex-1 rounded-md border border-sage-600 py-3 text-sm font-normal text-sage-700 transition-colors hover:bg-sage-50"
+          className="flex flex-1 items-center justify-center gap-2 rounded-md border border-sage-600 py-3 text-sm font-normal text-sage-700 transition-colors hover:bg-sage-50"
         >
+          <Image
+            src={`${basePath}/icons/kakao-map.png`}
+            alt=""
+            width={20}
+            height={20}
+            className="h-5 w-5 rounded"
+          />
           카카오맵
         </a>
       </div>
