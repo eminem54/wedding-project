@@ -29,7 +29,12 @@ export const weddingInfo = {
   directions: [
     {
       title: "지하철",
-      items: [{ label: "2호선, 5호선", text: "6-1번 출구 이용 맞은편 롯데리아 옆 E/V 이용" }],
+      items: [
+        {
+          label: "2호선, 5호선",
+          text: "6-1번 출구 이용 맞은편 롯데리아 옆 E/V 이용",
+        },
+      ],
     },
     {
       title: "버스",
@@ -119,8 +124,8 @@ export const weddingInfo = {
       },
       {
         role: "신랑 어머니",
-        bank: "은행명",
-        number: "000-0000-0000",
+        bank: "국민은행",
+        number: "462202-01-391255",
         holder: "김순애",
       },
       {
