@@ -394,7 +394,7 @@ export default function Gallery() {
                   <path d="M9 6l6 6-6 6" />
                 </svg>
               </button>
-              <p className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 rounded-full bg-white/80 px-3 py-1 text-xs text-ink/70 shadow-sm">
+              <p className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 rounded-full bg-white/80 px-3 py-1 text-xs font-normal text-ink/80 shadow-sm">
                 {selected + 1} / {count}
               </p>
             </>

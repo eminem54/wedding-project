@@ -58,7 +58,7 @@ function Countdown() {
             <span className="flex aspect-square w-full max-w-[68px] items-center justify-center rounded-full bg-sage-600 text-[22px] font-normal tabular-nums text-white shadow-md">
               {remaining ? remaining[key] : "-"}
             </span>
-            <span className="text-[13px] text-ink/70">{label}</span>
+            <span className="text-[13px] font-normal text-ink/80">{label}</span>
           </div>
         ))}
       </div>

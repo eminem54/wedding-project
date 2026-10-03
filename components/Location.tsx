@@ -14,7 +14,7 @@ export default function Location() {
       <SectionTitle>오시는 길</SectionTitle>
       <div className="space-y-1">
         <p className="text-base font-medium">{weddingInfo.venue.name}</p>
-        <p className="text-sm text-ink/60">
+        <p className="text-sm font-normal text-ink/80">
           {street}
           {detail.length > 0 && (
             <>
@@ -23,7 +23,7 @@ export default function Location() {
             </>
           )}
         </p>
-        <p className="text-sm text-ink/60">{weddingInfo.venue.tel}</p>
+        <p className="text-sm font-normal text-ink/80">{weddingInfo.venue.tel}</p>
       </div>
       <Image
         src={`${basePath}/map.jpg`}
@@ -70,8 +70,8 @@ export default function Location() {
           <div key={group.title} className="space-y-2 py-5">
             <dt className="text-[15px] font-medium text-sage-700">{group.title}</dt>
             {group.items.map((item) => (
-              <dd key={item.text} className="text-sm leading-6 text-ink/75">
-                {item.label && <span className="mr-2 font-normal text-ink">{item.label}</span>}
+              <dd key={item.text} className="text-sm font-normal leading-6 text-ink/80">
+                {item.label && <span className="mr-2 font-medium text-ink">{item.label}</span>}
                 {item.text}
               </dd>
             ))}

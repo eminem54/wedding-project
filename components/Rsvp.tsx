@@ -57,7 +57,7 @@ export default function Rsvp() {
   return (
     <section className="flex flex-col items-center gap-4 px-6 py-20 text-center">
       <SectionTitle>참석 의사 전달</SectionTitle>
-      <p className="text-[15px] leading-7 text-ink/75">
+      <p className="text-[15px] leading-7 font-normal text-ink/80">
         참석 여부를 미리 알려주시면
         <br />
         정성껏 준비하겠습니다.
@@ -74,7 +74,7 @@ export default function Rsvp() {
         <div className="text-center">
           <p className="font-garamond text-[15px] tracking-[0.25em] text-sage-600">R.S.V.P</p>
           <h2 className="mt-2 text-lg font-medium">참석 의사 전달</h2>
-          <p className="mt-3 text-sm leading-relaxed text-ink/70">
+          <p className="mt-3 text-sm leading-relaxed font-normal text-ink/80">
             축하의 마음으로 참석해주시는 모든 분들을
             <br />
             귀하게 모실 수 있도록
@@ -84,19 +84,19 @@ export default function Rsvp() {
         </div>
 
         <dl className="mt-5 grid grid-cols-[3rem_1fr] gap-y-2 rounded-md bg-sage-50 px-5 py-4 text-left text-sm">
-          <dt className="text-ink/50">일시</dt>
-          <dd>
+          <dt className="font-normal text-ink/80">일시</dt>
+          <dd className="font-medium text-ink">
             {weddingInfo.dateLabel} {weddingInfo.timeLabel}
           </dd>
-          <dt className="text-ink/50">장소</dt>
-          <dd>{weddingInfo.venue.name}</dd>
+          <dt className="font-normal text-ink/80">장소</dt>
+          <dd className="font-medium text-ink">{weddingInfo.venue.name}</dd>
         </dl>
 
         <div className="mt-6 grid grid-cols-2 gap-3">
           <button
             type="button"
             onClick={hideForToday}
-            className="rounded-md bg-ink/5 py-3 text-sm text-ink/60"
+            className="rounded-md bg-ink/5 py-3 text-sm font-normal text-ink/80"
           >
             오늘 하루 보지 않기
           </button>

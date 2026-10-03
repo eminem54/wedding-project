@@ -14,10 +14,10 @@ function Parents({
 }) {
   return (
     <p className="flex items-baseline justify-center gap-2 whitespace-nowrap text-[15px]">
-      <span className="text-ink/80">
+      <span className="font-normal text-ink/80">
         {father} · {mother}
       </span>
-      <span className="text-sm text-ink/50">의 {relation}</span>
+      <span className="text-sm font-normal text-ink/80">의 {relation}</span>
       <span className="ml-1 text-[17px] font-medium text-ink">{name}</span>
     </p>
   );
@@ -27,12 +27,12 @@ export default function Greeting() {
   return (
     <section className="flex flex-col items-center gap-10 px-8 py-24 text-center">
       <figure className="mb-6 flex flex-col items-center gap-6">
-        <blockquote className="font-serif text-[15px] leading-8 text-ink/75">
+        <blockquote className="font-serif text-[15px] leading-8 font-normal text-ink/80">
           {weddingInfo.poem.lines.map((line, i) =>
             line === "" ? <br key={i} /> : <p key={i}>{line}</p>,
           )}
         </blockquote>
-        <figcaption className="text-[13px] tracking-wide text-ink/50">
+        <figcaption className="text-[13px] tracking-wide font-normal text-ink/80">
           {weddingInfo.poem.source}
         </figcaption>
       </figure>

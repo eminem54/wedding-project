@@ -87,7 +87,7 @@ export function GuestbookForm({ onSubmitted }: { onSubmitted: () => void }) {
             placeholder="두 사람에게 축하의 마음을 전해주세요"
             className={`${inputClass} resize-none pb-7`}
           />
-          <span className="pointer-events-none absolute bottom-3 right-3 text-xs text-ink/40">
+          <span className="pointer-events-none absolute bottom-3 right-3 text-xs font-normal text-ink/80">
             {message.length}/{GUESTBOOK_MESSAGE_MAX}
           </span>
         </div>
@@ -137,7 +137,7 @@ export function GuestbookDeleteForm({
   return (
     <form onSubmit={handleSubmit} className="space-y-5 text-left">
       <SheetTitle>메시지 삭제</SheetTitle>
-      <p className="text-center text-sm text-ink/70">
+      <p className="text-center text-sm font-normal text-ink/80">
         {entry.name}님의 메시지를 삭제하려면
         <br />
         작성할 때 입력한 비밀번호를 입력해주세요.

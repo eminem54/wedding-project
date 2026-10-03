@@ -22,11 +22,11 @@ function AccountItem({ account }: { account: Account }) {
   return (
     <div className="flex items-center justify-between rounded-md bg-white/60 px-4 py-3 shadow-sm">
       <div className="text-left">
-        <p className="text-[13px] text-ink/80">
+        <p className="text-[13px] font-normal text-ink/80">
           {account.role} · {account.bank}
         </p>
         <p className="my-0.5 text-[15px] font-medium text-ink">{account.number}</p>
-        <p className="text-[13px] text-ink/80">예금주 {account.holder}</p>
+        <p className="text-[13px] font-normal text-ink/80">예금주 {account.holder}</p>
       </div>
       <button
         onClick={handleCopy}
@@ -44,7 +44,7 @@ export default function Accounts() {
   return (
     <section className="flex flex-col gap-4 px-6 py-20">
       <SectionTitle>마음 전하실 곳</SectionTitle>
-      <p className="text-center text-[15px] leading-7 text-ink/70">
+      <p className="text-center text-[15px] leading-7 font-normal text-ink/80">
         참석이 어려우신 분들을 위해
         <br />
         계좌번호를 기재하였습니다.

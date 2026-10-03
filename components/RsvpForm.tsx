@@ -33,7 +33,7 @@ function Choice<T extends string | boolean>({
             className={`rounded-md border py-2.5 text-sm transition-colors ${
               selected
                 ? "border-sage-600 bg-sage-600 font-normal text-white"
-                : "border-ink/10 text-ink/60"
+                : "border-ink/10 font-normal text-ink/80"
             }`}
           >
             {o.label}
@@ -93,7 +93,7 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
       <div className="flex flex-col items-center gap-3 py-6 text-center">
         <p className="font-garamond text-[15px] tracking-[0.25em] text-sage-600">THANK YOU</p>
         <p className="text-lg font-medium">소중한 답변 감사합니다</p>
-        <p className="text-sm text-ink/60">전해주신 마음 잘 받았습니다.</p>
+        <p className="text-sm font-normal text-ink/80">전해주신 마음 잘 받았습니다.</p>
         <button
           type="button"
           onClick={onClose}
@@ -209,7 +209,7 @@ export default function RsvpForm({ onSubmitted, onClose }: Props) {
             placeholder="짧은 메시지를 남겨주세요"
             className={`${inputClass} pr-14`}
           />
-          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs text-ink/40">
+          <span className="pointer-events-none absolute right-3 top-1/2 -translate-y-1/2 text-xs font-normal text-ink/80">
             {message.length}/{MESSAGE_MAX_LENGTH}
           </span>
         </div>

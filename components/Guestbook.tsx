@@ -67,7 +67,7 @@ function Pagination({
           onClick={() => onChange(p)}
           aria-current={p === page ? "page" : undefined}
           className={`h-8 w-8 rounded-full text-sm ${
-            p === page ? "bg-sage-600 font-normal text-white" : "text-ink/60"
+            p === page ? "bg-sage-600 font-normal text-white" : "font-normal text-ink/80"
           }`}
         >
           {p}
@@ -141,7 +141,7 @@ export default function Guestbook() {
   return (
     <section className="flex flex-col items-center gap-6 px-6 py-20 text-center">
       <SectionTitle>방명록</SectionTitle>
-      <p className="text-sm leading-relaxed text-ink/70">
+      <p className="text-sm leading-relaxed font-normal text-ink/80">
         두 사람에게 따뜻한
         <br />
         축하의 마음을 남겨주세요.
@@ -149,16 +149,16 @@ export default function Guestbook() {
 
       <div className="w-full">
         {status === "error" && !data ? (
-          <div className="space-y-3 py-6 text-sm text-ink/60">
+          <div className="space-y-3 py-6 text-sm font-normal text-ink/80">
             <p>메시지를 불러오지 못했어요.</p>
             <button type="button" onClick={reload} className="text-sage-600 underline">
               다시 시도
             </button>
           </div>
         ) : !data ? (
-          <p className="py-10 text-sm text-ink/40">불러오는 중...</p>
+          <p className="py-10 text-sm font-normal text-ink/80">불러오는 중...</p>
         ) : data.entries.length === 0 ? (
-          <p className="rounded-xl border border-dashed border-sage-300 bg-white/40 py-10 text-sm text-ink/50">
+          <p className="rounded-xl border border-dashed border-sage-300 bg-white/40 py-10 text-sm font-normal text-ink/80">
             첫 번째 축하 메시지를 남겨주세요.
           </p>
         ) : (
@@ -185,10 +185,10 @@ export default function Guestbook() {
                   {entry.message}
                 </p>
                 <div className="mt-3 flex items-center justify-between text-xs">
-                  <span title={entry.name} className="font-medium text-ink/70">
+                  <span title={entry.name} className="font-medium text-ink">
                     {truncateName(entry.name)}
                   </span>
-                  <time dateTime={entry.created_at} className="text-ink/40">
+                  <time dateTime={entry.created_at} className="font-normal text-ink/80">
                     {formatTime(entry.created_at)}
                   </time>
                 </div>
