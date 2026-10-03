@@ -11,6 +11,11 @@ body {
   color: #333230;
 }
 
+/* Hold entrance animations until the cover splash starts lifting. */
+body:has(#cover-splash:not([data-leaving])) .animate-fade-up {
+  animation-play-state: paused;
+}
+
 @layer utilities {
   /* Fine-grained noise over the paper colour, like the watercolour paper in the design. */
   .paper-texture {

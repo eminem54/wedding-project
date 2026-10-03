@@ -44,9 +44,32 @@ const config: Config = {
           from: { opacity: "0", transform: "translateY(12px)" },
           to: { opacity: "1", transform: "translateY(0)" },
         },
+        "cover-zoom": {
+          from: { transform: "scale(1.08)" },
+          to: { transform: "scale(1)" },
+        },
+        "fade-in": {
+          from: { opacity: "0" },
+          to: { opacity: "1" },
+        },
+        "edge-glow": {
+          "0%": { opacity: "0" },
+          "30%": { opacity: "1" },
+          "65%": { opacity: "0.45" },
+          "100%": { opacity: "1" },
+        },
+        // Sweeps the cover title's mask across its 400-unit viewBox plus the soft pen edge.
+        "pen-reveal": {
+          from: { transform: "translateX(0)" },
+          to: { transform: "translateX(460px)" },
+        },
       },
       animation: {
         "fade-up": "fade-up 1s ease-out both",
+        "fade-in": "fade-in 0.8s ease-out both",
+        "edge-glow": "edge-glow 3.4s ease-in-out both",
+        "cover-zoom": "cover-zoom 4s ease-out both",
+        "pen-reveal": "pen-reveal 1.9s cubic-bezier(0.45, 0.1, 0.55, 0.95) 0.3s both",
       },
     },
   },

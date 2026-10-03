@@ -65,6 +65,19 @@ export default function Location() {
           카카오맵
         </a>
       </div>
+      <dl className="w-full divide-y divide-ink/10 border-y border-ink/10 text-left">
+        {weddingInfo.directions.map((group) => (
+          <div key={group.title} className="space-y-2 py-5">
+            <dt className="text-[15px] font-medium text-sage-700">{group.title}</dt>
+            {group.items.map((item) => (
+              <dd key={item.text} className="text-sm leading-6 text-ink/75">
+                {item.label && <span className="mr-2 font-normal text-ink">{item.label}</span>}
+                {item.text}
+              </dd>
+            ))}
+          </div>
+        ))}
+      </dl>
     </section>
   );
 }

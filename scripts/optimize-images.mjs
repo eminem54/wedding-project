@@ -54,4 +54,21 @@ for (const v of VARIANTS) {
   }
 }
 
+// Cover splash photo shown on first load (components/CoverSplash.tsx).
+const COVER_SRC = "public/cover.jpg";
+const COVER_OUT = "public/cover.webp";
+const coverStat = await stat(COVER_SRC).catch(() => null);
+if (coverStat) {
+  const signature = `${coverStat.size}:${coverStat.mtimeMs}`;
+  nextManifest["../cover.jpg"] = signature;
+  if (manifest["../cover.jpg"] !== signature || !(await stat(COVER_OUT).catch(() => null))) {
+    await sharp(COVER_SRC)
+      .rotate()
+      .resize({ width: 1200, withoutEnlargement: true })
+      .webp({ quality: 80 })
+      .toFile(COVER_OUT);
+    console.log("optimized cover.jpg");
+  }
+}
+
 await writeFile(MANIFEST, JSON.stringify(nextManifest, null, 2) + "\n");

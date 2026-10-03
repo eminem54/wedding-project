@@ -23,7 +23,42 @@ export const weddingInfo = {
   venue: {
     name: "디노체컨벤션웨딩홀",
     address: "서울특별시 성동구 광장로 17 민자역사 6층 (성동구 행당동 168-151)",
-    tel: "02-0000-0000",
+    tel: "02-2200-1166",
+  },
+  // 오시는 길 안내. label은 정류장·노선처럼 앞에 따로 표시할 이름입니다.
+  directions: [
+    {
+      title: "지하철",
+      items: [{ label: "2호선, 5호선", text: "6-1번 출구 이용 맞은편 롯데리아 옆 E/V 이용" }],
+    },
+    {
+      title: "버스",
+      items: [
+        { label: "성동구청", text: "110A, 110B, 141, 148, 421, 2015, 2222" },
+        { label: "왕십리역", text: "302, 2012, 2013, 2014, 2222, N62" },
+      ],
+    },
+    {
+      title: "주차안내",
+      items: [{ label: null, text: "왕십리민자역사 2층~5층 (2시간 무료주차)" }],
+    },
+  ] as { title: string; items: { label: string | null; text: string }[] }[],
+  // 인사말 위에 들어가는 시. 빈 문자열은 연 구분입니다.
+  poem: {
+    lines: [
+      "예쁘지 않은 것을 예쁘게",
+      "보아주는 것이 사랑이다",
+      "",
+      "좋지 않은 것을 좋게",
+      "생각해주는 것이 사랑이다",
+      "",
+      "싫은 것도 잘 참아주면서",
+      "처음만 그런 것이 아니라",
+      "",
+      "나중까지 아주 나중까지",
+      "그렇게 하는 것이 사랑이다",
+    ],
+    source: "나태주, 「사랑에 답함」",
   },
   greeting: [
     "저희 두 사람이",
@@ -49,9 +84,17 @@ export const weddingInfo = {
     },
     {
       question: "신혼여행은 어디로 가시나요?",
-      answers: [{ who: null, text: "두 사람의 답변을 입력해주세요." }],
+      answers: [
+        {
+          who: null,
+          text: "스페인으로 갑니다! 이 부분은 신랑의 의견을 적극 담아 9박 10일 스페인 바르셀로나, 세비야, 마드리드를 보고 돌아오는 일정을 짰어요! 아름다운 지중해, 26년 완공된 사그라다 파밀리아 성당, 그리고 축구의 나라에서 축구까지 계획이 많아 다리가 부러지겠지만 열심히 돌아다니고 오겠습니다!",
+        },
+      ],
     },
-  ] as { question: string; answers: { who: "groom" | "bride" | null; text: string }[] }[],
+  ] as {
+    question: string;
+    answers: { who: "groom" | "bride" | null; text: string }[];
+  }[],
   gallery: [
     "gallery-01.jpg",
     "gallery-02.jpg",
@@ -59,13 +102,19 @@ export const weddingInfo = {
     "gallery-04.jpg",
     "gallery-05.jpg",
     "gallery-06.jpg",
+    "gallery-07.jpg",
+    "gallery-08.jpg",
+    "gallery-09.jpg",
+    "gallery-10.jpg",
+    "gallery-11.png",
+    "gallery-12.jpg",
   ] as string[],
   accounts: {
     groomSide: [
       {
         role: "신랑 아버지",
-        bank: "은행명",
-        number: "000-0000-0000",
+        bank: "국민은행",
+        number: "462225-89-107505",
         holder: "이태한",
       },
       {
@@ -76,28 +125,28 @@ export const weddingInfo = {
       },
       {
         role: "신랑",
-        bank: "은행명",
-        number: "000-0000-0000",
+        bank: "국민은행",
+        number: "96049160956",
         holder: "이지영",
       },
     ],
     brideSide: [
       {
         role: "신부 아버지",
-        bank: "은행명",
-        number: "000-0000-0000",
+        bank: "농협은행",
+        number: "20402152239596",
         holder: "최종명",
       },
       {
         role: "신부 어머니",
-        bank: "은행명",
-        number: "000-0000-0000",
+        bank: "농협은행",
+        number: "3521460399433",
         holder: "장경님",
       },
       {
         role: "신부",
-        bank: "은행명",
-        number: "000-0000-0000",
+        bank: "신한은행",
+        number: "110510200215",
         holder: "최혜윤",
       },
     ],

@@ -26,6 +26,16 @@ function Parents({
 export default function Greeting() {
   return (
     <section className="flex flex-col items-center gap-10 px-8 py-24 text-center">
+      <figure className="mb-6 flex flex-col items-center gap-6">
+        <blockquote className="font-serif text-[15px] leading-8 text-ink/75">
+          {weddingInfo.poem.lines.map((line, i) =>
+            line === "" ? <br key={i} /> : <p key={i}>{line}</p>,
+          )}
+        </blockquote>
+        <figcaption className="text-[13px] tracking-wide text-ink/50">
+          {weddingInfo.poem.source}
+        </figcaption>
+      </figure>
       <SectionTitle>초대합니다</SectionTitle>
       <div className="text-[16px] leading-9 text-ink/85">
         {weddingInfo.greeting.map((line, i) =>

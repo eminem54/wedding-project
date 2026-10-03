@@ -44,6 +44,16 @@ function imageUrl(file: string, variant: "thumb" | "full") {
   return `${basePath}/gallery/${variant}/${file.replace(/\.[^.]+$/, "")}.webp`;
 }
 
+// Mosaic on a 3-column grid, repeating every 12 photos: a 2x2 tile on the left
+// with two small ones beside it, a row of three, a 2x2 tile on the right, a row
+// of three. A large tile is only used when enough photos follow to fill its rows.
+function isLargeTile(i: number, count: number) {
+  const remaining = count - i;
+  if (i % 12 === 0) return remaining >= 3;
+  if (i % 12 === 7) return remaining >= 2;
+  return false;
+}
+
 export default function Gallery() {
   const photos = weddingInfo.gallery;
   const count = photos.length;
@@ -101,12 +111,24 @@ export default function Gallery() {
     return () => cancelAnimationFrame(id);
   }, [instant]);
 
-  const onTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
-    if (e.target !== e.currentTarget || shift === 0) return;
+  const finishShift = useCallback(() => {
+    if (shift === 0) return;
     setInstant(true);
     setSelected((i) => (i === null ? null : wrap(i + shift)));
     setShift(0);
     setZoom(NO_ZOOM);
+  }, [shift, wrap, setZoom]);
+
+  // transitionend never fires if the slide didn't animate (e.g. transitions were
+  // off mid-gesture), which would leave the arrows locked; finish it regardless.
+  useEffect(() => {
+    if (shift === 0) return;
+    const id = setTimeout(finishShift, 400);
+    return () => clearTimeout(id);
+  }, [shift, finishShift]);
+
+  const onTransitionEnd = (e: React.TransitionEvent<HTMLDivElement>) => {
+    if (e.target === e.currentTarget) finishShift();
   };
 
   const startPan = (start: Point) => {
@@ -180,22 +202,26 @@ export default function Gallery() {
 
   const onTouchEnd = (e: React.TouchEvent) => {
     const g = gesture.current;
-    if (!g) return;
 
     // Lifting one finger of a pinch continues as a pan with the remaining one.
     if (e.touches.length > 0) {
-      if (g.kind === "pinch" && zoomRef.current.scale > 1) startPan(touchPoint(e.touches[0]));
+      if (g?.kind === "pinch" && zoomRef.current.scale > 1) startPan(touchPoint(e.touches[0]));
       else gesture.current = null;
       return;
     }
+
+    // Always clear the drag state once the last finger lifts, even if the
+    // gesture was already dropped (e.g. a pinch released without zooming);
+    // otherwise transitions stay off and the arrows stop working.
+    gesture.current = null;
+    setDragging(false);
+    setDragX(0);
+    if (!g) return;
 
     if (g.kind === "swipe") {
       if (dragX <= -SWIPE_THRESHOLD) go(1);
       else if (dragX >= SWIPE_THRESHOLD) go(-1);
     }
-    gesture.current = null;
-    setDragging(false);
-    setDragX(0);
 
     const tapped = e.changedTouches[0];
     if (moved.current || !tapped || !frameRef.current?.contains(e.target as Node)) {
@@ -232,25 +258,30 @@ export default function Gallery() {
           <br />이 자리에 사진이 표시됩니다.
         </p>
       ) : (
-        <div className="grid w-full grid-cols-2 gap-2">
-          {photos.map((file, i) => (
-            <button
-              key={file}
-              type="button"
-              onClick={() => setSelected(i)}
-              aria-label={`${i + 1}번째 사진 크게 보기`}
-              className="relative aspect-[3/4] overflow-hidden rounded-sm bg-sage-100"
-            >
-              <Image
-                src={imageUrl(file, "thumb")}
-                alt=""
-                fill
-                loading="lazy"
-                sizes="(max-width: 448px) 50vw, 224px"
-                className="object-cover"
-              />
-            </button>
-          ))}
+        <div className="grid w-full grid-flow-row-dense grid-cols-3 gap-1.5">
+          {photos.map((file, i) => {
+            const large = isLargeTile(i, count);
+            return (
+              <button
+                key={file}
+                type="button"
+                onClick={() => setSelected(i)}
+                aria-label={`${i + 1}번째 사진 크게 보기`}
+                className={`relative overflow-hidden rounded-sm bg-sage-100 ${
+                  large ? "col-span-2 row-span-2" : "aspect-[4/5]"
+                }`}
+              >
+                <Image
+                  src={imageUrl(file, "thumb")}
+                  alt=""
+                  fill
+                  loading="lazy"
+                  sizes={large ? "(max-width: 448px) 66vw, 300px" : "(max-width: 448px) 33vw, 150px"}
+                  className="object-cover"
+                />
+              </button>
+            );
+          })}
         </div>
       )}
 
@@ -326,9 +357,20 @@ export default function Gallery() {
                   go(-1);
                 }}
                 aria-label="이전 사진"
-                className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-2xl leading-none text-sage-600 shadow-md"
+                className="absolute left-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-sage-600 shadow-md"
               >
-                &lsaquo;
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M15 6l-6 6 6 6" />
+                </svg>
               </button>
               <button
                 type="button"
@@ -337,9 +379,20 @@ export default function Gallery() {
                   go(1);
                 }}
                 aria-label="다음 사진"
-                className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-2xl leading-none text-sage-600 shadow-md"
+                className="absolute right-2 top-1/2 z-10 flex h-10 w-10 -translate-y-1/2 items-center justify-center rounded-full bg-white text-sage-600 shadow-md"
               >
-                &rsaquo;
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-5 w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth={2}
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  aria-hidden="true"
+                >
+                  <path d="M9 6l6 6-6 6" />
+                </svg>
               </button>
               <p className="absolute bottom-6 left-1/2 z-10 -translate-x-1/2 rounded-full bg-white/80 px-3 py-1 text-xs text-ink/70 shadow-sm">
                 {selected + 1} / {count}

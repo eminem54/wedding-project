@@ -11,6 +11,7 @@ import "./globals.css";
 import { weddingInfo } from "@/lib/weddingInfo";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import FloatingActions from "@/components/FloatingActions";
+import CoverSplash from "@/components/CoverSplash";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-noto-sans",
@@ -54,6 +55,9 @@ const gowun = Gowun_Batang({
 export const metadata: Metadata = {
   title: `${weddingInfo.groom.name} ♥ ${weddingInfo.bride.name} 결혼합니다`,
   description: `${weddingInfo.dateLabel} ${weddingInfo.timeLabel} | ${weddingInfo.venue.name}`,
+  // Keep the invitation (names, accounts) out of search results. A robots.txt
+  // wouldn't work here because GitHub Pages serves the site under a subpath.
+  robots: { index: false, follow: false, nocache: true },
 };
 
 // Pinch-zoom is reserved for the gallery lightbox, which handles it itself.
@@ -80,6 +84,7 @@ export default function RootLayout({
         </div>
         <BackgroundMusic />
         <FloatingActions />
+        <CoverSplash />
       </body>
     </html>
   );
