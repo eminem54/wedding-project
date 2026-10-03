@@ -57,16 +57,27 @@ for (const v of VARIANTS) {
 // Cover splash photo shown on first load (components/CoverSplash.tsx).
 const COVER_SRC = "public/cover.jpg";
 const COVER_OUT = "public/cover.webp";
+const OG_OUT = "public/og-image.jpg";
 const coverStat = await stat(COVER_SRC).catch(() => null);
 if (coverStat) {
   const signature = `${coverStat.size}:${coverStat.mtimeMs}`;
   nextManifest["../cover.jpg"] = signature;
-  if (manifest["../cover.jpg"] !== signature || !(await stat(COVER_OUT).catch(() => null))) {
+  const outputsExist = (await Promise.all([COVER_OUT, OG_OUT].map((f) => stat(f).catch(() => null)))).every(Boolean);
+  if (manifest["../cover.jpg"] !== signature || !outputsExist) {
     await sharp(COVER_SRC)
       .rotate()
       .resize({ width: 1200, withoutEnlargement: true })
       .webp({ quality: 80 })
       .toFile(COVER_OUT);
+    // Link-preview thumbnail (og:image) for KakaoTalk etc.: a 1200x630 crop
+    // centred on the couple's faces, which sit about 38% down the photo.
+    const resized = await sharp(COVER_SRC).rotate().resize({ width: 1200 }).toBuffer();
+    const { height } = await sharp(resized).metadata();
+    const top = Math.round(Math.min(Math.max(height * 0.38 - 315, 0), height - 630));
+    await sharp(resized)
+      .extract({ left: 0, top, width: 1200, height: 630 })
+      .jpeg({ quality: 85 })
+      .toFile(OG_OUT);
     console.log("optimized cover.jpg");
   }
 }

@@ -12,6 +12,7 @@ import { weddingInfo } from "@/lib/weddingInfo";
 import BackgroundMusic from "@/components/BackgroundMusic";
 import FloatingActions from "@/components/FloatingActions";
 import CoverSplash from "@/components/CoverSplash";
+import { basePath } from "@/lib/basePath";
 
 const notoSans = Noto_Sans_KR({
   variable: "--font-noto-sans",
@@ -52,9 +53,22 @@ const gowun = Gowun_Batang({
   weight: "400",
 });
 
+const title = `${weddingInfo.groom.name} ♥ ${weddingInfo.bride.name} 결혼합니다`;
+const description = `${weddingInfo.dateLabel} ${weddingInfo.timeLabel} | ${weddingInfo.venue.name}`;
+
 export const metadata: Metadata = {
-  title: `${weddingInfo.groom.name} ♥ ${weddingInfo.bride.name} 결혼합니다`,
-  description: `${weddingInfo.dateLabel} ${weddingInfo.timeLabel} | ${weddingInfo.venue.name}`,
+  // Link previews (KakaoTalk etc.) need absolute URLs for og:image.
+  metadataBase: new URL("https://eminem54.github.io"),
+  title,
+  description,
+  openGraph: {
+    type: "website",
+    url: `${basePath}/`,
+    title,
+    description,
+    // Generated from public/cover.jpg by scripts/optimize-images.mjs.
+    images: [{ url: `${basePath}/og-image.jpg`, width: 1200, height: 630 }],
+  },
   // Keep the invitation (names, accounts) out of search results. A robots.txt
   // wouldn't work here because GitHub Pages serves the site under a subpath.
   robots: { index: false, follow: false, nocache: true },

@@ -25,6 +25,7 @@
 /public/gallery/full/
 /public/gallery/.optimized.json
 /public/cover.webp
+/public/og-image.jpg
 
 # misc
 .DS_Store
