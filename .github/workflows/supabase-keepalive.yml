@@ -1,0 +1,29 @@
+name: Supabase keepalive
+
+# Free-tier Supabase projects pause after 7 days without activity.
+# Days 1, 6, 11, 16, 21, 26, 31 of each month keep every gap at 5 days or less.
+on:
+  schedule:
+    - cron: "0 0 */5 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  actions: write
+
+jobs:
+  ping:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Query Supabase
+        run: |
+          curl -fsS \
+            -H "apikey: sb_publishable_OcyZmLjKgY1f1_Zwf4HeQA_BbaMAl-P" \
+            "https://avzuscttillaksqwrwqh.supabase.co/rest/v1/guestbook?select=id&limit=1"
+
+      # GitHub disables scheduled workflows after 60 days without repo activity;
+      # re-enabling resets that timer so this keeps running without new commits.
+      - name: Keep this workflow enabled
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh api -X PUT "repos/${{ github.repository }}/actions/workflows/supabase-keepalive.yml/enable"
